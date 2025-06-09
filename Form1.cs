@@ -41,10 +41,10 @@ namespace Zad4_TransmisjaSzeregowaRS232
             var sb = new StringBuilder();
             foreach (char c in input)
             {
-                sb.Append("0"); // start bit
+                sb.Append("0"); // bit startu
                 string bits = Convert.ToString(c, 2).PadLeft(8, '0');  // Convert.ToString(c, 2) zmienia znak na binarny kod ASCII, .PadLeft(8, '0') zapewnia ze zawsze sa 8 bitow
                 sb.Append(new string(bits.Reverse().ToArray())); // odwraca bity (od LSB do MSB)
-                sb.Append("11"); // two stop bits
+                sb.Append("11"); // dwa bity stopu
             }
             return sb.ToString();
         }
@@ -68,7 +68,7 @@ namespace Zad4_TransmisjaSzeregowaRS232
             string inputText = FilterProfanity(txtInput.Text);   // sprawdza obecnosc przeklenstw
             string encoded = EncodeToRS232(inputText);  // enkoduje
             txtEncoded.Text = encoded;
-            // Simulate transmission via file
+            
             File.WriteAllText("transmission.txt", encoded);  // zapisuje zakodowana transmisje do pliku txt
         }
 
